@@ -1,0 +1,41 @@
+.firstBlueDot{
+    position: absolute;
+    top: 300px;
+    right: 20px;
+    transform: rotate(200deg);
+    filter: blur(30px);
+}
+.secondBlueDot{
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    transform: rotate(200deg);
+    filter: blur(30px);
+}
+@media only screen and (max-width: 768px){
+    #firstLogo{
+        display: block;
+        width: 500px;
+    }
+    #secondLogo{
+        display: none;
+    }
+}
+@media only screen and (min-width: 768px){
+    #firstLogo{
+        display: none;
+    }
+    #secondLogo{
+        display: block;
+    }
+}
+@media only screen and (max-width: 492px){
+    #firstLogo{
+        width: 400px;
+    }
+}
+@media only screen and (max-width: 392px){
+    #firstLogo{
+        width: 320px;
+    }
+}
