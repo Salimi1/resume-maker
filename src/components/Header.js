@@ -2,8 +2,8 @@ import React from 'react';
 //styles
 import styles from './Header.module.css'
 //assets
-import pngLogo from '../assets/pictures/header.png.png'
-import blueDot from '../assets/pictures/Ellipse 8.png'
+import pngLogo from '../assets/logos/header.png.png'
+import blueDot from '../assets/logos/Ellipse 8.png'
 
 const Header = () => {
     return (

@@ -1,0 +1,27 @@
+.container{
+    background-color: #eff2f9;
+    height: 100%;
+}
+.bild{
+    height: 75%;
+}
+.pdfText{
+    background-color: #9fa6bb;
+    color: #fff;
+    padding: 1px 4px;
+    border-radius: 2px;
+    font-size: 15px;
+    font-weight: bold;
+}
+.erstellBtn{
+    transform: translateY(350%);
+    transition: all 0.1s linear;
+}
+@media only screen and (max-width : 410px){
+    .container{
+        height: 74vh;
+    }
+    .bild{
+        height: 65vh;
+    }
+}
