@@ -3,8 +3,8 @@ import React from 'react';
 import styles from './Navbar.module.css'
 const Navbar = () => {
     return (
-        <nav className='navbar navbar-expand-md bg-body-tertiary'>
-            <div className={`container-fluid px-4 px-md-5 ${styles.container}`}>
+        <nav className='navbar fixed-top navbar-expand-md bg-body-tertiary'>
+            <div className={`container-fluid px-4 py-2 px-md-5 ${styles.container}`}>
                 <a href='#' className='navbar-brand'>CV maker</a>
                 <button data-bs-toggle='offcanvas' data-bs-target='#navbar' className='navbar-toggler'>
                     <span className='navbar-toggler-icon'></span>

@@ -12,6 +12,9 @@
     transform: rotate(200deg);
     filter: blur(30px);
 }
+#secondLogo{
+    
+}
 @media only screen and (max-width: 768px){
     #firstLogo{
         display: block;

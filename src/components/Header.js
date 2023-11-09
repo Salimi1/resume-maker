@@ -7,7 +7,7 @@ import blueDot from '../assets/logos/Ellipse 8.png'
 
 const Header = () => {
     return (
-        <div className={`container-fluid py-md-4 px-4 px-md-5 ${styles.container}`}>
+        <div className={`container-fluid py-md-4 px-4 px-md-5 my-md-5 ${styles.container}`}>
             <div className='row'>
                 <div className='d-flex d-md-none justify-content-center position-relative'>
                     <img src={blueDot} className={styles.firstBlueDot} />
@@ -24,7 +24,7 @@ const Header = () => {
                     </p>
                     <button className='btn btn-primary my-2 mt-md-2'>Erstelle Labenslauf</button>
                 </div>
-                <img id={styles.secondLogo} className='col-10 col-md-6 mt-4' src={pngLogo} />
+                <img id={styles.secondLogo} className='col-10 col-md-6 col-lg-4 mt-5' src={pngLogo} />
             </div>
         </div>
     );

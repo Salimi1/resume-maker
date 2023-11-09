@@ -1,0 +1,16 @@
+.kontaktLogo{
+    background-color: #608AF5;
+    color: #fff;
+    clip-path: polygon(50% 0%, 80% 10%, 100% 35%, 100% 70%, 80% 90%, 50% 100%, 20% 90%, 0% 70%, 0% 35%, 20% 10%);
+    background-color: #608AF5;
+    width: 90px;
+    height: 90px;
+    padding: 20px;
+}
+/* .footerSwosh{
+    background-image: url('https://imagizer.imageshack.com/img924/5392/vSkTFv.png');
+} */
+.linkTag{
+    list-style-type: none;
+    list-style: none;
+}
