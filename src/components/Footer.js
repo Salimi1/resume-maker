@@ -11,16 +11,16 @@ import styles from './Footer.module.css'
 const Footer = () => {
     return (
         <div className=''>
-            <div className='container-fluid px-5'>
-                <h4 style={{color: '#002265', fontWeight: 'bold', textAlign: 'center', margin: '120px 0 30px'}}>Mich
-                    <span style={{color: '#14279B'}}> Kontaktieren</span>
-                </h4>
+            <div className='container-fluid px-4 px-md-5'>
+                <h2 className={styles.kontaktH4}>Mich
+                    <span className={styles.kontaktSpan}> Kontaktieren</span>
+                </h2>
                 <div className='row px-lg-4 justify-content-center'>
-                    <Link className='col-6 col-md-2 my-2 my-sm-4 my-sm-0 text-center list-group-item'>
+                    <Link to='https://github.com/Salimi1' className='col-6 col-md-2 my-2 my-sm-4 my-sm-0 text-center list-group-item'>
                         <AiFillGithub className={styles.kontaktLogo} />
                         <h5 className='mt-2'>Github</h5>
                     </Link>
-                    <Link className='col-6 col-md-2 my-2 my-sm-4 text-center list-group-item'>
+                    <Link to='https://www.instagram.com/?next=%2F&hl=de' className='col-6 col-md-2 my-2 my-sm-4 text-center list-group-item'>
                         <AiFillInstagram className={styles.kontaktLogo} />
                         <h5 className='mt-2'>Instagram</h5>
                     </Link>

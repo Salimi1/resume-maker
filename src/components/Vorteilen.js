@@ -1,5 +1,7 @@
 import React from 'react';
 import VorteilKarte from '../shared/VorteilKarte';
+//styles
+import styles from './Vorteilen.module.css'
 
 const voteileCards = [
     {img: 'https://imagizer.imageshack.com/img924/7936/OVInHK.png', vorteil: 'Professionell'},
@@ -9,11 +11,11 @@ const voteileCards = [
 const Vorteilen = () => {
     return (
         <div className='container-fluid'>
-            <h2 style={{color: '#002265', fontWeight: 'bold', textAlign: 'center'}}>Unsere
-                <span style={{color: '#14279B'}}> Vorteile</span>
+            <h2 className={styles.vorteilenH2}>Unsere
+                <span className={styles.vorteilenSpan}> Vorteile</span>
             </h2>
-            <div className='row px-4 justify-content-center my-4'>
-                {voteileCards.map(card => <VorteilKarte data={card} />)}
+            <div className='row px-4 px-md-5 justify-content-center my-4'>
+                {voteileCards.map(card => <VorteilKarte data={card} key={card.index} />)}
             </div>
         </div>
     );

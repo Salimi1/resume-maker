@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Vorlagen from "./components/Vorlagen";
 import Vorteilen from "./components/Vorteilen";
 import Footer from "./components/Footer";
+import Bewertungen from "./components/Bewertungen";
 //redux
 // import { Provider } from "react-redux";
 // import store from "./redux/store";
@@ -14,6 +15,7 @@ function App() {
         <Header />
         <Vorlagen />
         <Vorteilen />
+        <Bewertungen />
         <Footer />
     </div>
   );

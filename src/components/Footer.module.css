@@ -7,10 +7,17 @@
     height: 90px;
     padding: 20px;
 }
-/* .footerSwosh{
-    background-image: url('https://imagizer.imageshack.com/img924/5392/vSkTFv.png');
-} */
+
 .linkTag{
     list-style-type: none;
     list-style: none;
+}
+.kontaktSpan{
+    color: #14279B;
+}
+.kontaktH4{
+    color: '#002265';
+    text-align: center;
+    font-weight: bold;
+    margin: 170px 0 30px;
 }
