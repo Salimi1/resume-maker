@@ -1,22 +1,16 @@
+import { Route, Routes, Navigate } from "react-router-dom";
 //Components
-import Navbar from "./components/Navbar";
-import Header from "./components/Header";
-import Vorlagen from "./components/Vorlagen";
-import Vorteilen from "./components/Vorteilen";
-import Footer from "./components/Footer";
-import Bewertungen from "./components/Bewertungen";
-//redux
-// import { Provider } from "react-redux";
-// import store from "./redux/store";
+import Home from "./components/Home";
+import MakeResume from "./components/MakeResume";
+
 function App() {
   return (
-    <div style={{backgroundImage: 'url(https://imagizer.imageshack.com/img924/9695/Czr9ke.png)'}} className="App">
-        <Navbar />
-        <Header />
-        <Vorlagen />
-        <Vorteilen />
-        <Bewertungen />
-        <Footer />
+    <div className="App">
+        <Routes>
+          <Route path='*' element={<Navigate to='/home'/>} />
+          <Route path='/home' element={<Home />}/>
+          <Route path="/vorlagen/:name" element={<MakeResume />} />
+        </Routes>
     </div>
   );
 }

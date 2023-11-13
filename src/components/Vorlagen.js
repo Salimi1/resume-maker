@@ -2,7 +2,7 @@ import React from 'react';
 //styles
 import styles from './Vorlagen.module.css'
 //shared
-import Vorlage from '../shared/Vorlage';
+import LebenslaufAnschreibenVorlage from '../shared/LebenslaufAnschreibenVorlage';
 const lebensläufe = [
     {img: 'https://imagizer.imageshack.com/img922/7272/6Z873R.png', title: 'Berlin', text: 'Versatile modern CV template with a minimalist header.'},
     {img: 'https://imagizer.imageshack.com/img923/5412/a7yNrQ.png', title: 'London', text: 'Classically structured resume template, for a robust career history.'},
@@ -26,13 +26,13 @@ const Vorlagen = () => {
                 <span className={styles.vorlagenSpan}> Vorlagen</span>
             </h2>            
             <div className='row'>
-                {lebensläufe.map(item => <Vorlage data={item} />)}
+                {lebensläufe.map(item => <LebenslaufAnschreibenVorlage data={item} key={item.index} />)}
             </div>
             <h2 className={`text-center pt-5 ${styles.vorlagenH2}`}>Anschreiben
                 <span className={styles.vorlagenSpan}> Vorlagen</span>
             </h2> 
             <div className='row'>
-                {anschreiben.map(item => <Vorlage data={item} />)}
+                {anschreiben.map(item => <LebenslaufAnschreibenVorlage data={item} key={item.index} />)}
             </div>
 
         </div>
