@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 //styles
-import styles from './Vorlage.module.css'
+import styles from './LebenslaufAnschreiben.module.css'
 
 const LebenslaufAnschreibenVorlage = ({data}) => {
     const erstellBtn = useRef()
@@ -24,7 +24,7 @@ const LebenslaufAnschreibenVorlage = ({data}) => {
             <div onMouseOver={showAddBtnHandler} onMouseOut={hideAddBtnHandler} className={`px-2 px-md-4 position-relative rounded-2 overflow-hidden ${styles.container}`}>
                 <img ref={img} className={`w-100 pt-3 mb-3 ${styles.bild}`} src={data.img} />
                 <div className='d-flex justify-content-center'>
-                    <Link to={`/vorlagen/${data.title}`} ref={erstellBtn} className={`btn btn-primary px-md-3 position-absolute ${styles.erstellBtn}`}>Diese Vorlage benutzen</Link>
+                    <Link to={`/vorlagen/${data.title.toLowerCase()}/edit/inhalt`} ref={erstellBtn} className={`btn btn-primary px-md-3 position-absolute ${styles.erstellBtn}`}>Diese Vorlage benutzen</Link>
                 </div>
                 <div className='d-flex justify-content-between'>
                     <span className={styles.pdfText}>PDF</span>
