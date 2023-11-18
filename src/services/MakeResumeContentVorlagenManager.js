@@ -57,7 +57,7 @@ const MakeResumeContentSettingVorlage = ({data}) => {
     return (
         <div className="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-4">
             <div className={`card shadow text-center pt-2 pb-0 px-2 ${styles.card}`}>
-                <Link to={`/vorlagen/${data.title.toLowerCase()}/edit/setting`}>
+                <Link to={`/${type}/${data.title}/edit/setting`}>
                     <img className={styles.cardImg} src={img} />
                 </Link>
                 <span className="mt-2 text-center text-dark">{title} ({type})</span>
@@ -66,10 +66,6 @@ const MakeResumeContentSettingVorlage = ({data}) => {
     )
 }
 
-
-const oppenModalHandler = () => {
-
-}
 
 const MakeResumeContentSetting = () => {
     const lebensläufe = useSelector(state => state.vorlagenDateienState.lebensläufe)

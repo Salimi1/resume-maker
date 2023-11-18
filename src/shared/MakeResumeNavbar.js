@@ -8,7 +8,7 @@ import { AiFillPicture } from 'react-icons/ai';
 
 
 const MakeResumeNavbar = ({data}) => {
-    const {activeNavItem, vorlageName, size} = data;
+    const {activeNavItem, vorlageName, size, vorlageType} = data;
     return (
         size == 'sm' ? (
             <ul className='nav flex-column align-items-center'>
@@ -17,15 +17,15 @@ const MakeResumeNavbar = ({data}) => {
                         <BiArrowBack />
                     </Link>
                 </li>
-                <Link to={`/vorlagen/${vorlageName}/edit/inhalt`} className={`nav-item nav-link p-0 mt-5 d-flex flex-column align-items-center ${activeNavItem === 'inhalt' ? 'text-primary' : 'text-dark'}`}>
+                <Link to={`/${vorlageType}/${vorlageName}/edit/inhalt`} className={`nav-item nav-link p-0 mt-5 d-flex flex-column align-items-center ${activeNavItem === 'inhalt' ? 'text-primary' : 'text-dark'}`}>
                     <BsFillMenuButtonWideFill />
                     Inhalt
                 </Link>
-                <Link to={`/vorlagen/${vorlageName}/edit/setting`} className={`nav-item nav-link p-0 mt-5 d-flex flex-column align-items-center ${activeNavItem === 'setting' ? 'text-primary' : 'text-dark'}`}>
+                <Link to={`/${vorlageType}/${vorlageName}/edit/setting`} className={`nav-item nav-link p-0 mt-5 d-flex flex-column align-items-center ${activeNavItem === 'setting' ? 'text-primary' : 'text-dark'}`}>
                     <GiSettingsKnobs />
                     Einstellungen
                 </Link>
-                <Link to={`/vorlagen/${vorlageName}/edit/preview`} className={`nav-item d-flex d-xl-none nav-link p-0 mt-5 flex-column align-items-center ${activeNavItem === 'preview' ? 'text-primary' : 'text-dark'}`}>
+                <Link to={`/${vorlageType}/${vorlageName}/edit/preview`} className={`nav-item d-flex d-xl-none nav-link p-0 mt-5 flex-column align-items-center ${activeNavItem === 'preview' ? 'text-primary' : 'text-dark'}`}>
                     <AiFillPicture />
                     Vorschau
                 </Link>
