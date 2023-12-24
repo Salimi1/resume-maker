@@ -1,0 +1,28 @@
+.rowDivTag{
+    font-size: 9px;
+    color: #525e6d;
+    padding: 10px 12px;
+}
+.partTitle{
+    background-color: #444443;
+    color: #ffff;
+    font-size: 11px;
+    padding: 5px 0;
+    margin-top: 15px;
+}
+.partTitlesRows{
+    margin-bottom: 6px;
+}
+.leftSide{
+    background-color: #ffff;
+    padding-top: 73px;
+}
+.rightSide{
+    background-color: #bacdd4;
+}
+.name{
+    color: #525e6d;
+}
+.bild{
+    background-color: #a9b7bb;
+}

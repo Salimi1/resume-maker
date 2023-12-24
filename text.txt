@@ -1,0 +1,19 @@
+    const cvCon = useRef()
+    const downloadPDF = () => {
+        const cv = cvCon.current;
+        html2canvas(cv, { scale: 2, useCORS: true,  }).then((canvas) => {
+            const pdf = new jsPDF('p', 'mm', 'a4', true);
+            const imgData = canvas.toDataURL('image/png', 1.0);
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = pdf.internal.pageSize.getHeight();
+            const imgWidth = canvas.width;
+            const imgHeight = canvas.height;
+            // Berechne das Verhältnis basierend auf der Breite
+            const ratio = pdfWidth / imgWidth;
+            const imgX = 0; // Kein horizontaler Versatz
+            const imgY = (pdfHeight - imgHeight * ratio) / 100; // Zentriere das Bild vertikal
+    
+            pdf.addImage(imgData, 'PNG', imgX, imgY, pdfWidth, imgHeight * ratio);
+            pdf.save('cv.pdf');
+        });
+    };

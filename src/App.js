@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 //Components
 import Home from "./components/Home";
 import MakeResume from "./components/MakeResume";
+import './App.css'
 
 
 function App() {

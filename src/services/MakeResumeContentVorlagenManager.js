@@ -11,7 +11,7 @@ import { BsArrowDown } from "react-icons/bs";
 
 const MakeResumeContentForm = () => {
     return (
-        <div>
+        <div className="">
             <h4 className='mt-4 mt-sm-0'>Persönliche Daten</h4>
             <form>
                 <div className='row mt-4'>
@@ -71,14 +71,14 @@ const MakeResumeContentSetting = () => {
     const lebensläufe = useSelector(state => state.vorlagenDateienState.lebensläufe)
     const anschreiben = useSelector(state => state.vorlagenDateienState.anschreiben)
     return (
-        <div className="pt-3">
+        <div className="pt-1">
             <h4>Dokumenteinstellungen</h4>
             <span className="text-secondary">Lebenslauf Sprache</span>
             <div className="border rounded py-2 px-3 mt-2">
                 <img width='20px' className="me-3" src="https://imagizer.imageshack.com/img922/6030/LC85Rt.png" />
                 Deutschland
             </div>
-            <div className="pt-3">
+            <div className="pt-2">
                 <span className="text-secondary">Vorlagen</span>
                 <div className={`${styles.cardsCon} row mt-2 flex-nowrap overflow-scroll`}>
                     {lebensläufe.map(lebenslauf => <MakeResumeContentSettingVorlage key={lebenslauf.index} data={lebenslauf} />)}
@@ -108,7 +108,7 @@ const MakeResumeContentSetting = () => {
                     </span>
                 </div>
             </div>
-            <div className="text-secondary mt-3 mb-5">
+            <div className="text-secondary mt-3">
                 <span>Schriftart</span>
                 <div className="d-flex p-2 ailgn-items-center mt-2 rounded bg-body-secondary justify-content-between">
                     <select className="w-100 form-select bg-seondary border-0">
