@@ -1,8 +1,7 @@
 .kontaktLogo{
-    background-color: #608AF5;
     color: #fff;
     clip-path: polygon(50% 0%, 80% 10%, 100% 35%, 100% 70%, 80% 90%, 50% 100%, 20% 90%, 0% 70%, 0% 35%, 20% 10%);
-    background-color: #608AF5;
+    background-color: #233A5F;
     width: 90px;
     height: 90px;
     padding: 20px;
@@ -13,7 +12,7 @@
     list-style: none;
 }
 .kontaktSpan{
-    color: #14279B;
+    color: #233A5F;
 }
 .kontaktH4{
     color: '#002265';
@@ -21,3 +20,4 @@
     font-weight: bold;
     margin: 170px 0 30px;
 }
+

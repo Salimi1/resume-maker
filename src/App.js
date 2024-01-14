@@ -6,6 +6,8 @@ import { Provider } from "react-redux";
 import Home from "./components/Home";
 import MakeResume from "./components/MakeResume";
 import './App.css'
+//redux
+import { useDispatch, useSelector } from "react-redux";
 
 
 function App() {

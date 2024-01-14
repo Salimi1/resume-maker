@@ -1,0 +1,8 @@
+.kontaktBtn{
+    background-color: #294571;
+    color: #fff;
+}
+.kontaktBtn:hover{
+    color: #fff;
+    background-color: #233A5F;
+}

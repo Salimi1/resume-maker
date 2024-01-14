@@ -16,6 +16,11 @@
 .erstellBtn{
     transform: translateY(360%);
     transition: all 0.1s linear;
+    background-color: #3a63a5;
+    transition: all 0.5ms;
+}
+.erstellBtn:hover{
+    background-color: #325690;
 }
 @media only screen and (max-width : 410px){
     .container{

@@ -34,7 +34,7 @@ const Footer = () => {
                     </Link>
                 </div>
             </div>
-            <img className='w-100' src='https://imagizer.imageshack.com/img924/5392/vSkTFv.png' />
+            <img className={`w-100 mt-5 ${styles.swoosh}`} src='https://i.ibb.co/FhGg53T/Vector3.png' />
         </div>
     );
 };

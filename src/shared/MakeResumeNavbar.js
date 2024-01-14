@@ -23,7 +23,7 @@ const MakeResumeNavbar = ({data}) => {
                 </Link>
                 <Link to={`/${vorlageType}/${vorlageName}/edit/setting`} className={`nav-item nav-link p-0 mt-5 d-flex flex-column align-items-center ${activeNavItem === 'setting' ? 'text-primary' : 'text-dark'}`}>
                     <GiSettingsKnobs />
-                    Einstellungen
+                    Einstellung
                 </Link>
                 <Link to={`/${vorlageType}/${vorlageName}/edit/preview`} className={`nav-item d-flex d-xl-none nav-link p-0 mt-5 flex-column align-items-center ${activeNavItem === 'preview' ? 'text-primary' : 'text-dark'}`}>
                     <AiFillPicture />
@@ -31,10 +31,11 @@ const MakeResumeNavbar = ({data}) => {
                 </Link>
             </ul>
         ) : (
-            <ul className='nav justify-content-evenly fixed-bottom bg-primary'>
-                <Link to={`/vorlagen/${vorlageName}/edit/inhalt`} className='nav-item'><a className='nav-link text-light'>Inhalt <BsFillMenuButtonWideFill /></a></Link>
-                <Link to={`/vorlagen/${vorlageName}/edit/setting`} className='nav-item'><a className='nav-link text-light'>Einstellungen <GiSettingsKnobs /></a></Link>
-                <Link to={`/vorlagen/${vorlageName}/edit/preview`} className='nav-item'><a className='nav-link text-light'>Vorschau <AiFillPicture /></a></Link>
+            <ul className='nav justify-content-evenly fs-6 align-items-center fixed-bottom bg-body-tertiary'>
+                <Link to='/home' className='nav-link text-dark'><BiArrowBack /></Link>
+                <Link to={`/${vorlageType}/${vorlageName}/edit/inhalt`} className={`nav-link ${activeNavItem === 'inhalt' ? 'text-primary' : 'text-dark'}`}><BsFillMenuButtonWideFill /></Link>
+                <Link to={`/${vorlageType}/${vorlageName}/edit/setting`} className={`nav-link ${activeNavItem === 'setting' ? 'text-primary' : 'text-dark'}`}><GiSettingsKnobs /></Link>
+                <Link to={`/${vorlageType}/${vorlageName}/edit/preview`} className={`nav-link ${activeNavItem === 'preview' ? 'text-primary' : 'text-dark'}`}><AiFillPicture /></Link>
             </ul>
         )
     )

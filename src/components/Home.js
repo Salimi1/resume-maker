@@ -10,7 +10,7 @@ import React from 'react';
 
 const Home = () => {
     return (
-        <div style={{backgroundImage: 'url(https://imagizer.imageshack.com/img924/9695/Czr9ke.png)'}}>
+        <div className="mt-5 mt-md-0" style={{backgroundImage: 'url(https://imagizer.imageshack.com/img924/9695/Czr9ke.png)'}}>
             <Navbar />
             <Header />
             <VorlagenInHome />

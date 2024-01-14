@@ -12,9 +12,16 @@
     transform: rotate(200deg);
     filter: blur(30px);
 }
-#secondLogo{
-    
+.erstellBtn{
+    background-color: #294571;
+    color: #fff;
+    transition: all 0.8ms;
 }
+.erstellBtn:hover{
+    color: #fff;
+    background-color: #233A5F;
+}
+
 @media only screen and (max-width: 768px){
     #firstLogo{
         display: block;
@@ -30,15 +37,22 @@
     }
     #secondLogo{
         display: block;
+        margin-top: 100px;
     }
 }
-@media only screen and (max-width: 492px){
+@media only screen and (max-width: 580px){
     #firstLogo{
         width: 400px;
     }
 }
-@media only screen and (max-width: 392px){
+@media only screen and (max-width: 450px){
     #firstLogo{
         width: 320px;
+    }
+}
+@media only screen and (max-width: 768px){
+    #firstLogo{
+        margin-top: 120px;
+        /* width: 400px; */
     }
 }

@@ -1,0 +1,105 @@
+.rowDivTag{
+    box-sizing: border-box;
+    font-size: 9px;
+    color: #525e6d;
+    width: 514px;
+    height: 745px;
+    padding: 0;
+    transform: scale(0.68) translateY(-132px);
+}
+.obereSeite{
+    clip-path: polygon(0 0, 100% 0%, 100% 92%, 0 100%);
+    background-color: #233A5F;
+    height: 28%;
+}
+.mitlereSeite{
+    background-color: #ffff;
+    transform: translateY(-17px);
+    z-index: -1;
+    height: 68%;
+    padding-top: 40px;
+}
+.untereSeite{
+    height: 4%;
+    transform: translateY(-17px);
+    background-color: #ffff;
+}
+
+.name{
+    font-size: 30px;
+    letter-spacing: 3px;
+    font-weight: bold;
+}
+.sprachen, .interessen, .kompetenzen, .stärken{
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+.h5Tag{
+    padding-bottom: 3px;
+    font-size: 11px;
+}
+.bild{
+    background-color: #a9b7bb;
+    border-radius: 50%;
+    width: 140px;
+    height: 140px;
+}
+
+@media only screen and (max-width: 1200px) {
+    .downloadBtnCon{
+        transform: translateY(500px);
+    }
+    .rowDivTag{
+        transform: scale(0.64) translateY(-270px);
+        width: 514px;
+        height: 745px;
+    }
+}
+@media only screen and (max-width: 576px) {
+    .downloadBtnCon{
+        transform: translateY(450px);
+    }
+    .rowDivTag{
+        transform: scale(0.58) translateY(-330px);
+        width: 514px;
+        height: 745px;
+    }
+}
+@media only screen and (max-width: 354px) {
+    .downloadBtnCon{
+        transform: translateY(415px);
+    }
+    .rowDivTag{
+        transform: scale(0.54) translateY(-390px);
+        width: 514px;
+        height: 745px;
+    }
+}
+
+
+/* Anschreiben */
+.anschreibenUntereSeite{
+    margin-bottom: 250px;
+}
+.kontaktDatenSpan, .anschriftSpan{
+    color: #233A5F;
+    font-weight: bolder;
+}
+.anschreibenTitle{
+    color: #233A5F;
+    font-size: 14px;
+}
+.obereSeiteLinkPTag{
+    font-size: 7px;
+}
+.anschreibenText{
+    font-size: 10px;
+}
+.preTag{
+    font-family: Arial, Helvetica, sans-serif;
+    white-space: pre-wrap;
+    color: #525e6d;
+    box-sizing: border-box;
+    font-size: 9px;    
+}
