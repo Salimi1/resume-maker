@@ -224,18 +224,18 @@ const MakeResumeContentForm = ({ data }) => {
 
     return (
         <div className="mb-5 mb-sm-0 p-2 p-sm-3 ms-md-2 w-100">
-            <h4 className='mt-4 mt-sm-0'>Persönliche Daten</h4>
-            <form className="">
-                <div className='row mt-4'>
-                    {formLabelAndInputDivTagHandler ({className: 'col-6 mb-2', inputType: 'text', labelValue: 'Name', functionName: 'MakeResumeContentForm', inputValue: name})}
-                    {formLabelAndInputDivTagHandler ({className: 'col-6 mb-2', inputType: 'text', labelValue: vorlageType === 'cv' ? 'Position' : 'Nummer', functionName: 'MakeResumeContentForm', inputValue: vorlageType === 'cv' ? position : nummer})}
+            <form style={{height: '100vh'}} className="d-flex flex-column justify-content-between">
+                <h4 className='mt-4 mt-sm-0'>Persönliche Daten</h4>
+                <div className='row mt-3'>
+                    {formLabelAndInputDivTagHandler ({className: 'col-6', inputType: 'text', labelValue: 'Name', functionName: 'MakeResumeContentForm', inputValue: name})}
+                    {formLabelAndInputDivTagHandler ({className: 'col-6', inputType: 'text', labelValue: vorlageType === 'cv' ? 'Position' : 'Nummer', functionName: 'MakeResumeContentForm', inputValue: vorlageType === 'cv' ? position : nummer})}
                 </div>
                 {vorlageType === 'anschr' && (
                     <div>
                         {formLabelAndInputDivTagHandler ({className: 'col-12 mt-4', inputType: 'email', labelValue: 'Email', functionName: 'MakeResumeContentForm', inputValue: email})}
                     </div>
                 )}
-                <div className='row mt-4'>
+                <div className='row mt-3'>
                     {formLabelAndInputDivTagHandler ({className: vorlageType === 'anschr' && vorlageName === 'paris' ? 'col-12' : 'col-6', textareaClassName: `${styles.unternehmensDatenTextarea}`, inputType: 'text', labelValue: vorlageType === 'cv' ? 'Nummer' : 'Unternehmens Daten' , functionName: 'MakeResumeContentForm', inputValue: vorlageType === 'cv' ? nummer : unternehmensdaten})}
                     {vorlageType === 'anschr' && vorlageName === 'paris' ? null : formLabelAndInputDivTagHandler ({className: 'col-6', textareaClassName: `${styles.adresseTextarea}`, inputType: 'text', labelValue: vorlageType === 'cv' ? 'CvAdresse' : 'AnschrAdresse', functionName: 'MakeResumeContentForm', inputValue: vorlageType === 'cv' ? cvadresse : anschradresse})}
                     {formLabelAndInputDivTagHandler ({className: 'mt-4', inputType: 'email', labelValue: vorlageType === 'cv' ? 'Email' : 'Anschreiben Überschrift', functionName: 'MakeResumeContentForm', inputValue: vorlageType === 'cv' ? email : anschreibenüberschrift})}
@@ -245,7 +245,7 @@ const MakeResumeContentForm = ({ data }) => {
                         {formLabelAndInputDivTagHandler ({className: 'col-12', textareaClassName: `${styles.überMichTextarea}`, inputType: 'text', labelValue: 'Über Mich', functionName: 'MakeResumeContentForm', inputValue: übermich})}
                     </div>
                 }
-                {formLabelAndInputDivTagHandler ({className: 'mt-4', textareaClassName: `${styles.anschreibentextTextarea}`, inputType: vorlageType === 'cv' ? 'file' : 'text', labelValue: vorlageType === 'cv' ? 'Foto' : 'Anschreibentext ', functionName: 'MakeResumeContentForm', inputValue: vorlageType === 'cv' ? bild : anschreibentext})}
+                {formLabelAndInputDivTagHandler ({className: 'mt-3', textareaClassName: `${styles.anschreibentextTextarea}`, inputType: vorlageType === 'cv' ? 'file' : 'text', labelValue: vorlageType === 'cv' ? 'Foto' : 'Anschreibentext ', functionName: 'MakeResumeContentForm', inputValue: vorlageType === 'cv' ? bild : anschreibentext})}
                 {
                     vorlageType === 'cv' && (
                         <div>
@@ -283,7 +283,7 @@ const MakeResumeContentSetting = ({ data }) => {
                     <Link to={`/${type}/${title}/edit/setting`}>
                         <img className={styles.cardImg} src={img} />
                     </Link>
-                    <span className="mt-2 text-center">{title} ({type})</span>
+                    <span className="text-center">{title} ({type})</span>
                 </div>
             </div>
         )
@@ -302,21 +302,21 @@ const MakeResumeContentSetting = ({ data }) => {
     
     
     return (
-        <div className="p-3">
+        <div style={{height: '100vh'}} className="p-3 d-flex flex-column justify-content-between">
             <h4>Dokumenteinstellungen</h4>
             <span className="text-secondary">Lebenslauf Sprache</span>
-            <div className="border rounded py-2 px-3 mt-2">
+            <div className="border rounded py-2 px-3">
                 <img width='20px' className="me-3" src="https://imagizer.imageshack.com/img922/6030/LC85Rt.png" />
                 Deutschland
             </div>
-            <div className="pt-2">
+            <div className="mt-2">
                 <span className="text-secondary">Vorlagen</span>
-                <div className={`${styles.cardsCon} row mt-2 flex-nowrap overflow-scroll`}>
+                <div className={`${styles.cardCon} row mt-2 flex-nowrap overflow-scroll`}>
                     {lebensläufe.map(lebenslauf => <MakeResumeContentSettingVorlage key={lebenslauf.index} data={lebenslauf} />)}
                     {anschreiben.map(anschreiben => <MakeResumeContentSettingVorlage key={anschreiben.index} data={anschreiben} />)}
                 </div>
             </div>
-            <div className="mt-3 text-secondary">
+            <div className=" text-secondary mt-2">
                 <span>Farben</span>
                 <div className="d-flex w-100 mt-2">
                     {farbenVorlageHandler('blue', '#334fdc')}

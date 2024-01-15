@@ -37,7 +37,7 @@
     width: 105px;
     height: 105px;
 }
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1199px) {
     .downloadBtnCon{
         transform: translateY(500px);
     }
