@@ -76,9 +76,11 @@ const Paris = () => {
                     </div>
                   ) : (
                     <div>
-                      {Array(item.niveau).fill(<TbPointFilled />)}
-                      {Array(5 - item.niveau).fill(<TbPoint />)}
+                      {Array.from({ length: 4 }, (_, index) => (
+                        index < item.niveau ? <TbPointFilled key={index} /> : <TbPoint key={index} />
+                      ))}
                     </div>
+
                   )}
                 </div>
               ))}
@@ -115,40 +117,39 @@ const Paris = () => {
       };
 
       return (
-          <div className='container-fluid'>
-              <div className={`text-xl-end text-center mt-2 ${styles.downloadBtnCon}`}>
-                  <button style={{backgroundColor: activefarbecode}} onClick={() => dispatch({type: 'DOWNLOAD', cvCon})} className='btn text-light'>Herunterladen</button>
+          <div className={`container-fluid d-flex flex-column justify-content-evenly align-items-center ${styles.parisVorlageCon}`}>
+              <div style={{height: '90vh'}} className='d-flex align-items-center'>
+                <div ref={cvCon} className={`row ${styles.rowDivTag}`}>
+                    <div className={`col-8 ${styles.leftSide}`}>
+                        <div>
+                            <h5 className={`${styles.name}`}>{name}</h5>
+                            <span className=''>{position}</span>
+                        </div>
+                        <br/>
+                        <br/>
+                        {erfahrungBildungProjektKompetenzMapHandler(accordionüberschrift1, berufserfahrungen, 'partTitle')}
+                        {erfahrungBildungProjektKompetenzMapHandler(accordionüberschrift2, bildung, 'partTitle')}
+                        {erfahrungBildungProjektKompetenzMapHandler(accordionüberschrift3, projekte, 'partTitle')}
+                    </div>
+                    <div  style={{backgroundColor: activefarbecode, color: '#ffff'}} className={`col-4`}>
+                        <div className='text-center mt-4'>
+                            <img className={`rounded-pill p-1 ${styles.bild}`} ref={imgTagRef} />
+                        </div>
+                        <h4 className={`${styles.rechteSeitePartTitle} text-center`}>KONTAKT</h4>
+                        <div>
+                            {kontaktRowsMapHandler(cvadresse, <MdOutlineLocationOn />)}
+                            {kontaktRowsMapHandler(nummer, <MdOutlinePhone />)}
+                            {kontaktRowsMapHandler(email, <CgMail />)}
+                        </div>
+                        {erfahrungBildungProjektKompetenzMapHandler(accordionüberschrift4, kompetenzen, 'rechteSeitePartTitle')}
+                        {sprachenInteressenStärkenHandler(accordionüberschrift5, sprachen, 'sprache')}
+                        {sprachenInteressenStärkenHandler(accordionüberschrift6, interessen, 'interesse')}
+                        {sprachenInteressenStärkenHandler(accordionüberschrift7, stärken, 'stärke')}
+                    </div>
+                </div>
               </div>
-              <div ref={cvCon} className={`row ${styles.rowDivTag}`}>
-                  <div className={`col-8 ${styles.leftSide}`}>
-                      <div>
-                          <h5 className={`${styles.name}`}>{name}</h5>
-                          <span className=''>{position}</span>
-                      </div>
-                      <br/>
-                      <br/>
-                      {erfahrungBildungProjektKompetenzMapHandler(accordionüberschrift1, berufserfahrungen, 'partTitle')}
-                      {erfahrungBildungProjektKompetenzMapHandler(accordionüberschrift2, bildung, 'partTitle')}
-                      {erfahrungBildungProjektKompetenzMapHandler(accordionüberschrift3, projekte, 'partTitle')}
-                  </div>
-                  <div  style={{backgroundColor: activefarbecode, color: '#ffff'}} className={`col-4`}>
-                      <div className='text-center mt-4'>
-                          <img className={`rounded-pill p-1 ${styles.bild}`} ref={imgTagRef} />
-                      </div>
-                      <h4 className={`${styles.rechteSeitePartTitle} text-center`}>KONTAKT</h4>
-                      <div>
-                          {kontaktRowsMapHandler(cvadresse, <MdOutlineLocationOn />)}
-                          {kontaktRowsMapHandler(nummer, <MdOutlinePhone />)}
-                          {kontaktRowsMapHandler(email, <CgMail />)}
-                      </div>
-                      {erfahrungBildungProjektKompetenzMapHandler(accordionüberschrift4, kompetenzen, 'rechteSeitePartTitle')}
-                      {sprachenInteressenStärkenHandler(accordionüberschrift5, sprachen, 'sprache')}
-                      {sprachenInteressenStärkenHandler(accordionüberschrift6, interessen, 'interesse')}
-                      {sprachenInteressenStärkenHandler(accordionüberschrift7, stärken, 'stärke')}
-                  </div>
-              </div>
-              <div style={{transform: 'translateY(-185px)'}}>
-                  <span style={{backgroundColor: activefarbecode}} className='rounded-2 p-2 text-light d-none d-xl-inline'>Paris-Vorlage</span>
+              <div style={{height: '10vh'}} className={`text-center d-flex align-items-center mt-2 ${styles.downloadBtnCon}`}>
+                <button onClick={() => dispatch({type: 'DOWNLOAD', cvCon})} style={{backgroundColor: activefarbecode}} className={`btn text-light ${styles.downloadBtn}`}>Herunterladen</button>
               </div>
           </div>
       );

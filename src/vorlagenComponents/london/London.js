@@ -102,43 +102,42 @@ const London = () => {
 
 
     return (
-        <div className='container-fluid ps-lg-0'>
-            <div className={`text-xl-end text-center mt-2 ${styles.downloadBtnCon}`}>
-                <button style={{backgroundColor: activefarbecode}} onClick={() => dispatch({type: 'DOWNLOAD', cvCon})} className='btn text-light'>Herunterladen</button>
-            </div>
-            <div className={`row ${styles.rowDivTag}`} ref={cvCon}>
-                <div style={{backgroundColor: activefarbecode}} className={`col-4 ${styles.leftSide}`}>
-                    <div className={`mt-4`}>
-                        <img ref={imgTagRef} className={styles.bild} />
+        <div className={`container-fluid d-flex flex-column justify-content-evenly align-items-center ps-lg-0 ${styles.londonVorlageCon}`}>
+            <div style={{height: '90vh'}} className='d-flex align-items-center'>
+                <div className={`row ${styles.rowDivTag}`} ref={cvCon}>
+                    <div style={{backgroundColor: activefarbecode}} className={`col-4 ${styles.leftSide}`}>
+                        <div className={`mt-4`}>
+                            <img ref={imgTagRef} className={styles.bild} />
+                        </div>
+                        <div className='mt-2'>
+                            <span className={`fs-5`}>{name}</span>
+                            <p className={`text-text-body-tertiary`}>{position}</p>
+                        </div>
+                        <div>
+                            <div className={`${styles.kontaktBox}`}>{nummer}</div>
+                            <div className={`${styles.kontaktBox}`}>{email}</div>
+                            <div className={`${styles.kontaktBox}`}>{cvadresse}</div>
+                        </div>
+                        <div>
+                            {kompetenzInteresseStärkeHandler('Sprachen', sprachen)}
+                            {kompetenzInteresseStärkeHandler('Kompetenzen', kompetenzen)}
+                            {kompetenzInteresseStärkeHandler('Interessen', interessen)}
+                            {kompetenzInteresseStärkeHandler('Stärken', stärken)}
+                        </div>
                     </div>
-                    <div className='mt-2'>
-                        <span className={`fs-5`}>{name}</span>
-                        <p className={`text-text-body-tertiary`}>{position}</p>
-                    </div>
-                    <div>
-                        <div className={`${styles.kontaktBox}`}>{nummer}</div>
-                        <div className={`${styles.kontaktBox}`}>{email}</div>
-                        <div className={`${styles.kontaktBox}`}>{cvadresse}</div>
-                    </div>
-                    <div>
-                        {kompetenzInteresseStärkeHandler('Sprachen', sprachen)}
-                        {kompetenzInteresseStärkeHandler('Kompetenzen', kompetenzen)}
-                        {kompetenzInteresseStärkeHandler('Interessen', interessen)}
-                        {kompetenzInteresseStärkeHandler('Stärken', stärken)}
+                    <div className={`col-8 ${styles.rightSide}`}>
+                        <div>
+                        <h4 style={{borderBottom: `2px solid ${activefarbecode}`}} className={`${styles.partTitle}`}>ÜBER MICH</h4>
+                            <p>{übermich}</p>
+                        </div>
+                        {erfahrungBildungProjektHandler('BERUFSERFAHRUNGEN', berufserfahrungen)}
+                        {erfahrungBildungProjektHandler('BILDUNG', bildung)}
+                        {erfahrungBildungProjektHandler('PROJEKTE', projekte)}
                     </div>
                 </div>
-                <div className={`col-8 ${styles.rightSide}`}>
-                    <div>
-                    <h4 style={{borderBottom: `2px solid ${activefarbecode}`}} className={`${styles.partTitle}`}>ÜBER MICH</h4>
-                        <p>{übermich}</p>
-                    </div>
-                    {erfahrungBildungProjektHandler('BERUFSERFAHRUNGEN', berufserfahrungen)}
-                    {erfahrungBildungProjektHandler('BILDUNG', bildung)}
-                    {erfahrungBildungProjektHandler('PROJEKTE', projekte)}
-                </div>
             </div>
-            <div style={{transform: 'translateY(-185px)'}}>
-                <span style={{backgroundColor: activefarbecode}} className='rounded-2 p-2 text-light d-none d-xl-inline'>London-Vorlage</span>
+            <div style={{height: '10vh'}} className={`text-center d-flex align-items-center mt-2 ${styles.downloadBtnCon}`}>
+                <button onClick={() => dispatch({type: 'DOWNLOAD', cvCon})} style={{backgroundColor: activefarbecode}} className={`btn text-light ${styles.downloadBtn}`}>Herunterladen</button>
             </div>
         </div>
     );

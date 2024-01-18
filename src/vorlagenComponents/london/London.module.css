@@ -1,10 +1,16 @@
+.londonVorlageCon{
+    height: 100vh;
+}
 .rowDivTag{
     box-sizing: border-box;
     font-size: 9px;
     color: #525e6d;
     height: 745px;
     width: 524px;
-    transform: scale(0.68) translateY(-145px);
+    transform: scale(0.65);
+}
+.downloadBtnCon{
+    transform: translateY(-50%);
 }
 .rightSide{
     background-color: #ffff;
@@ -45,42 +51,42 @@
     width: 115px;
     height: 115px;
 }
-.downloadBtn{
-    
-}
 @media only screen and (max-width: 1199px) {
-    .downloadBtnCon{
-        transform: translateY(500px);
+    .londonVorlageCon{
+        height: 95vh;
     }
     .rowDivTag{
-        transform: scale(0.64) translateY(-270px);
+        transform: scale(0.6);
+        width: 514px;
+        height: 745px;
     }
-}
-@media only screen and (max-width: 576px) {
     .downloadBtnCon{
-        transform: translateY(450px);
-    }
-    .rowDivTag{
-        transform: scale(0.58) translateY(-330px);
-    }
-}
-@media only screen and (max-width: 354px) {
-    .downloadBtnCon{
-        transform: translateY(415px);
-    }
-    .rowDivTag{
-        transform: scale(0.54) translateY(-390px);
+        transform: translateY(-24px);
     }
 }
 
-@media only screen and (min-width: 1400px){
+@media only screen and (max-width: 576px) {
     .downloadBtnCon{
-        /* transform: translateX(-185px) translateY(415px); */
+        transform: translateY(-55px);
     }
     .rowDivTag{
-        transform: scale(0.7) translateY(-135px)
+        transform: scale(0.58);
+        width: 514px;
+        height: 745px;
     }
 }
+
+@media only screen and (max-width: 354px) {
+    .downloadBtnCon{
+        transform: translateY(-70px);
+    }
+    .rowDivTag{
+        transform: scale(0.54);
+        width: 514px;
+        height: 745px;
+    }
+}
+
 
 /* Anschreiben */
 .obereSeite{

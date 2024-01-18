@@ -11,6 +11,7 @@ const MakeResumeContent = ({data}) => {
                 {activeNavItem === 'setting' && <MakeResumeContentSetting data={{vorlageName, vorlageType}} />}
             </div>
             {activeNavItem == 'preview' &&(
+                // activeVorlage['vorlage']
                 <div className='d-xl-none'>
                     {activeVorlage.vorlage}
                 </div>

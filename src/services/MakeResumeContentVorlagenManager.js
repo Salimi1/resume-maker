@@ -85,7 +85,7 @@ const MakeResumeContentForm = ({ data }) => {
         dispatch({ type: `EDIT_${key.toUpperCase()}`, payload: { index, property, newValue: value }, actionName: key.toUpperCase() });
     };
 
-    const formLabelAndInputDivTagHandler = ({isUsedInAccordion, className, textareaClassName, inputType, labelValue, functionName, key, index, newItemFirstPropertyKey, inputValue}) => {
+    const formLabelAndInputDivTagHandler = ({inputHeight, className, textareaClassName, inputType, labelValue, functionName, key, index, newItemFirstPropertyKey, inputValue}) => {
         const upperCasedAndReplacedSpacesLabelValue = labelValue.replace(/\s+/g, '').toUpperCase();
         const lowerCasedAndReplacedSpacesLabelValue = labelValue.replace(/\s+/g, '').toLowerCase();
         const newLabelValue = labelValue === 'CvAdresse' || labelValue === 'AnschrAdresse' ? 'Adresse' : labelValue
@@ -112,18 +112,18 @@ const MakeResumeContentForm = ({ data }) => {
                         value={inputType !== 'file' ? inputValue : ''}
                         onChange={handleChange}
                         type={inputType}
-                        className='form-control'
+                        className='form-control'style={{height: inputHeight}}
                         id={lowerCasedAndReplacedSpacesLabelValue}
                     />
                 ) : (
-                    <textarea className={`form-control ${textareaClassName}`} value={inputValue} onChange={handleChange}></textarea>
+                    <textarea style={{height: inputHeight}} className={`form-control ${textareaClassName}`} value={inputValue} onChange={handleChange}></textarea>
                 )}
             </div>
         );
     };
 
 
-    const returnDataHandler = (key, dispatchName, dataArray, newItemFirstPropertyKey, newItemSecondPropertyKey) => {
+    const returnAccordionHandler = (key, dispatchName, dataArray, newItemFirstPropertyKey, newItemSecondPropertyKey) => {
         const dispatchChangeÜberschrift = (newValue, dispatchName) => {
             dispatch({type: `CHANGE_${dispatchName}`, payload: newValue, actionName: dispatchName})
         }
@@ -174,7 +174,7 @@ const MakeResumeContentForm = ({ data }) => {
                                 <div className="accordion-body">
                                     {key === 'Berufserfahrungen' ? (
                                     <form key={index}>
-                                        {formLabelAndInputDivTagHandler ({className: '', inputType: 'text', labelValue: newItemFirstPropertyKey, functionName: 'returnDataHandler', key, index, newItemFirstPropertyKey, inputValue: item.überschrift})}
+                                        {formLabelAndInputDivTagHandler ({inputHeight: '' ,className: '', inputType: 'text', labelValue: newItemFirstPropertyKey, functionName: 'returnDataHandler', key, index, newItemFirstPropertyKey, inputValue: item.überschrift})}
                                         <div className="row mt-3">
                                             {formLabelAndInputDivTagHandler ({className: 'col-6', inputType: 'text', labelValue: newItemSecondPropertyKey, functionName: 'returnDataHandler', key, index, newItemFirstPropertyKey: newItemSecondPropertyKey, inputValue: item.arbeitgeber})}
                                             {formLabelAndInputDivTagHandler ({className: 'col-6', inputType: 'text', labelValue: 'datum', functionName: 'returnDataHandler', key, index, newItemFirstPropertyKey: 'datum', inputValue: item.datum})}
@@ -211,7 +211,7 @@ const MakeResumeContentForm = ({ data }) => {
                     <div
                         onClick={() => dispatch({ type: `ADD_${key.toUpperCase()}`, payload, actionName })}
                         type="button"
-                        className="d-flex align-items-center fw-medium text-primary mt-3"
+                        className={`d-flex align-items-center fw-medium text-primary mt-3 ${key === 'Stärken' && 'pb-3'}`}
                         key={`add-button-${key}`}
                     >
                         <AiOutlinePlus />
@@ -223,39 +223,43 @@ const MakeResumeContentForm = ({ data }) => {
     };
 
     return (
-        <div className="mb-5 mb-sm-0 p-2 p-sm-3 ms-md-2 w-100">
-            <form style={{height: '100vh'}} className="d-flex flex-column justify-content-between">
+        <div className="">
+            <form style={{height: '100vh'}} className="d-flex flex-column fs-xl-5 justify-content-between p-3 my-2">
                 <h4 className='mt-4 mt-sm-0'>Persönliche Daten</h4>
-                <div className='row mt-3'>
-                    {formLabelAndInputDivTagHandler ({className: 'col-6', inputType: 'text', labelValue: 'Name', functionName: 'MakeResumeContentForm', inputValue: name})}
-                    {formLabelAndInputDivTagHandler ({className: 'col-6', inputType: 'text', labelValue: vorlageType === 'cv' ? 'Position' : 'Nummer', functionName: 'MakeResumeContentForm', inputValue: vorlageType === 'cv' ? position : nummer})}
+                <div className='row mt-3 mt-xl-2'>
+                    {formLabelAndInputDivTagHandler ({inputHeight: '7vh', className: 'col-6', inputType: 'text', labelValue: 'Name', functionName: 'MakeResumeContentForm', inputValue: name})}
+                    {formLabelAndInputDivTagHandler ({inputHeight: '7vh', className: 'col-6', inputType: 'text', labelValue: vorlageType === 'cv' ? 'Position' : 'Nummer', functionName: 'MakeResumeContentForm', inputValue: vorlageType === 'cv' ? position : nummer})}
                 </div>
                 {vorlageType === 'anschr' && (
-                    <div>
-                        {formLabelAndInputDivTagHandler ({className: 'col-12 mt-4', inputType: 'email', labelValue: 'Email', functionName: 'MakeResumeContentForm', inputValue: email})}
+                    <div className="row mt-3 mt-xl-2">
+                        {formLabelAndInputDivTagHandler ({inputHeight: '7vh', className: 'col-12', inputType: 'email', labelValue: 'Email', functionName: 'MakeResumeContentForm', inputValue: email})}
                     </div>
                 )}
-                <div className='row mt-3'>
-                    {formLabelAndInputDivTagHandler ({className: vorlageType === 'anschr' && vorlageName === 'paris' ? 'col-12' : 'col-6', textareaClassName: `${styles.unternehmensDatenTextarea}`, inputType: 'text', labelValue: vorlageType === 'cv' ? 'Nummer' : 'Unternehmens Daten' , functionName: 'MakeResumeContentForm', inputValue: vorlageType === 'cv' ? nummer : unternehmensdaten})}
-                    {vorlageType === 'anschr' && vorlageName === 'paris' ? null : formLabelAndInputDivTagHandler ({className: 'col-6', textareaClassName: `${styles.adresseTextarea}`, inputType: 'text', labelValue: vorlageType === 'cv' ? 'CvAdresse' : 'AnschrAdresse', functionName: 'MakeResumeContentForm', inputValue: vorlageType === 'cv' ? cvadresse : anschradresse})}
-                    {formLabelAndInputDivTagHandler ({className: 'mt-4', inputType: 'email', labelValue: vorlageType === 'cv' ? 'Email' : 'Anschreiben Überschrift', functionName: 'MakeResumeContentForm', inputValue: vorlageType === 'cv' ? email : anschreibenüberschrift})}
+                <div className='row mt-3 mt-xl-2'>
+                    {formLabelAndInputDivTagHandler ({inputHeight: vorlageType === 'cv' ? '7vh' : '14vh' , className: vorlageType === 'anschr' && vorlageName === 'paris' ? 'col-12' : 'col-6', inputType: 'text', labelValue: vorlageType === 'cv' ? 'Nummer' : 'Unternehmens Daten' , functionName: 'MakeResumeContentForm', inputValue: vorlageType === 'cv' ? nummer : unternehmensdaten})}
+                    {vorlageType === 'anschr' && vorlageName === 'paris' ? null : formLabelAndInputDivTagHandler ({inputHeight: vorlageType === 'cv' ? '7vh' : '14vh' , className: 'col-6', inputType: 'text', labelValue: vorlageType === 'cv' ? 'CvAdresse' : 'AnschrAdresse', functionName: 'MakeResumeContentForm', inputValue: vorlageType === 'cv' ? cvadresse : anschradresse})}
+                </div>
+                <div className="row mt-3 mt-xl-2">
+                    {formLabelAndInputDivTagHandler ({inputHeight: vorlageType === 'cv' ? '7vh' : '11vh', className: '', inputType: 'email', labelValue: vorlageType === 'cv' ? 'Email' : 'Anschreiben Überschrift', functionName: 'MakeResumeContentForm', inputValue: vorlageType === 'cv' ? email : anschreibenüberschrift})}
                 </div>
                 {vorlageName === 'london' && vorlageType === 'cv' &&
-                    <div className="row mt-4">
-                        {formLabelAndInputDivTagHandler ({className: 'col-12', textareaClassName: `${styles.überMichTextarea}`, inputType: 'text', labelValue: 'Über Mich', functionName: 'MakeResumeContentForm', inputValue: übermich})}
+                    <div className="row mt-3 mt-xl-2">
+                        {formLabelAndInputDivTagHandler ({inputHeight: '20vh', className: 'col-12', inputType: 'text', labelValue: 'Über Mich', functionName: 'MakeResumeContentForm', inputValue: übermich})}
                     </div>
                 }
-                {formLabelAndInputDivTagHandler ({className: 'mt-3', textareaClassName: `${styles.anschreibentextTextarea}`, inputType: vorlageType === 'cv' ? 'file' : 'text', labelValue: vorlageType === 'cv' ? 'Foto' : 'Anschreibentext ', functionName: 'MakeResumeContentForm', inputValue: vorlageType === 'cv' ? bild : anschreibentext})}
+                <div className="row mt-3 mt-xl-2">
+                    {formLabelAndInputDivTagHandler ({inputHeight: vorlageType === 'cv' ? '5vh' : '20vh' ,className: '', inputType: vorlageType === 'cv' ? 'file' : 'text', labelValue: vorlageType === 'cv' ? 'Foto' : 'Anschreibentext ', functionName: 'MakeResumeContentForm', inputValue: vorlageType === 'cv' ? bild : anschreibentext})}
+                </div>
                 {
                     vorlageType === 'cv' && (
-                        <div>
-                            {returnDataHandler(accordionüberschrift1, 'ACCORDIONÜBERSCHRIFT1', berufserfahrungen, 'überschrift', 'arbeitgeber')}
-                            {returnDataHandler(accordionüberschrift2, 'ACCORDIONÜBERSCHRIFT2', bildung, 'schule', 'datum')}
-                            {returnDataHandler(accordionüberschrift3, 'ACCORDIONÜBERSCHRIFT3', projekte, 'title', 'link')}
-                            {returnDataHandler(accordionüberschrift4, 'ACCORDIONÜBERSCHRIFT4', kompetenzen, 'kompetenz', 'niveau')}
-                            {returnDataHandler(accordionüberschrift5, 'ACCORDIONÜBERSCHRIFT5', sprachen, 'sprache')}
-                            {returnDataHandler(accordionüberschrift6, 'ACCORDIONÜBERSCHRIFT6', interessen, 'interesse')}
-                            {returnDataHandler(accordionüberschrift7, 'ACCORDIONÜBERSCHRIFT7', stärken, 'stärke')}
+                        <div className="row mt-3 mt-xl-0">
+                            {returnAccordionHandler(accordionüberschrift1, 'ACCORDIONÜBERSCHRIFT1', berufserfahrungen, 'überschrift', 'arbeitgeber')}
+                            {returnAccordionHandler(accordionüberschrift2, 'ACCORDIONÜBERSCHRIFT2', bildung, 'schule', 'datum')}
+                            {returnAccordionHandler(accordionüberschrift3, 'ACCORDIONÜBERSCHRIFT3', projekte, 'title', 'link')}
+                            {returnAccordionHandler(accordionüberschrift4, 'ACCORDIONÜBERSCHRIFT4', kompetenzen, 'kompetenz', 'niveau')}
+                            {returnAccordionHandler(accordionüberschrift5, 'ACCORDIONÜBERSCHRIFT5', sprachen, 'sprache')}
+                            {returnAccordionHandler(accordionüberschrift6, 'ACCORDIONÜBERSCHRIFT6', interessen, 'interesse')}
+                            {returnAccordionHandler(accordionüberschrift7, 'ACCORDIONÜBERSCHRIFT7', stärken, 'stärke')}
                         </div>
                     )
                 }
@@ -304,10 +308,12 @@ const MakeResumeContentSetting = ({ data }) => {
     return (
         <div style={{height: '100vh'}} className="p-3 d-flex flex-column justify-content-between">
             <h4>Dokumenteinstellungen</h4>
-            <span className="text-secondary">Lebenslauf Sprache</span>
-            <div className="border rounded py-2 px-3">
-                <img width='20px' className="me-3" src="https://imagizer.imageshack.com/img922/6030/LC85Rt.png" />
-                Deutschland
+            <div className="">
+                <span className="text-secondary">Lebenslauf Sprache</span>
+                <div className="border rounded mt-2 py-2 px-3">
+                    <img width='20px' className="me-3" src="https://imagizer.imageshack.com/img922/6030/LC85Rt.png" />
+                    Deutschland
+                </div>
             </div>
             <div className="mt-2">
                 <span className="text-secondary">Vorlagen</span>

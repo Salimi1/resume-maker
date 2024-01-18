@@ -54,14 +54,3 @@
     background-color: #ea4c89;
 }
 
-
-/* Anschreiben */
-.anschreibentextTextarea{
-    height: 150px;
-}
-.unternehmensDatenTextarea, .adresseTextarea{
-    height: 85px;
-}
-.überMichTextarea{
-    height: 133px;
-}

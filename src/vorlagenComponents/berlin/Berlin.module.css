@@ -1,3 +1,6 @@
+.berlinVorlageCon{
+    height: 100vh;
+}
 .rowDivTag{
     box-sizing: border-box;
     font-size: 9px;
@@ -5,7 +8,10 @@
     width: 514px;
     height: 745px;
     padding: 0;
-    transform: scale(0.68) translateY(-132px);
+    transform: scale(0.65);
+}
+.downloadBtnCon{
+    transform: translateY(-50%);
 }
 .obereSeite{
     clip-path: polygon(0 0, 100% 0%, 100% 92%, 0 100%);
@@ -21,7 +27,7 @@
 }
 .untereSeite{
     height: 4%;
-    transform: translateY(-17px);
+    transform: translateY(-18px);
     background-color: #ffff;
 }
 
@@ -47,31 +53,36 @@
 }
 
 @media only screen and (max-width: 1199px) {
-    .downloadBtnCon{
-        transform: translateY(500px);
+    .berlinVorlageCon{
+        height: 95vh;
     }
     .rowDivTag{
-        transform: scale(0.64) translateY(-270px);
+        transform: scale(0.6);
         width: 514px;
         height: 745px;
     }
+    .downloadBtnCon{
+        transform: translateY(-24px);
+    }
 }
+
 @media only screen and (max-width: 576px) {
     .downloadBtnCon{
-        transform: translateY(450px);
+        transform: translateY(-55px);
     }
     .rowDivTag{
-        transform: scale(0.58) translateY(-330px);
+        transform: scale(0.58);
         width: 514px;
         height: 745px;
     }
 }
+
 @media only screen and (max-width: 354px) {
     .downloadBtnCon{
-        transform: translateY(415px);
+        transform: translateY(-70px);
     }
     .rowDivTag{
-        transform: scale(0.54) translateY(-390px);
+        transform: scale(0.54);
         width: 514px;
         height: 745px;
     }
