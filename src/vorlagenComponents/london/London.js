@@ -19,7 +19,7 @@ const London = () => {
     const dispatch = useDispatch();
     const state = useSelector(state => state.allVorlagenState)
     const {name, nummer, cvadresse, email, position, übermich, activefarbecode, bild, berufserfahrungen, bildung, projekte,
-    kompetenzen, sprachen, interessen, stärken,} = state;
+    kompetenzen, sprachen, interessen, stärken, accordionüberschrift1, accordionüberschrift2, accordionüberschrift3, accordionüberschrift4, accordionüberschrift5, accordionüberschrift6, accordionüberschrift7} = state;
     const imgTagRef = useRef()
     const cvCon = useRef()
 
@@ -38,25 +38,28 @@ const London = () => {
 
     const kompetenzInteresseStärkeHandler = (key, dataArray) => {
         return(
-            <div className={`mt-3`}>
-                <span className={`${styles.linkeSeiteÜberschrifte}`}>{key}</span>
-                <ul className={`${styles.ulTag} px-3`}>
-                    {dataArray.map((item, index) => (
-                        <li className='pe-4' key={index}>{item.sprache || item.interesse || item.stärke || item.kompetenz}</li>
-                    ))}
-                </ul>
-            </div>
+            dataArray.length > 0 && (
+                <div className={`mt-3`}>
+                    <span className={`${styles.linkeSeiteÜberschrifte}`}>{key}</span>
+                    <ul className={`${styles.ulTag} px-3`}>
+                        {dataArray?.map((item, index) => (
+                            <li className='pe-4' key={index}>{item.sprache || item.interesse || item.stärke || item.kompetenz}</li>
+                        ))}
+                    </ul>
+                </div>
+            )
         )
     }
 
 
     const erfahrungBildungProjektHandler = (key, dataArray) => {
-        if(dataArray[0].überschrift || dataArray[0].kompetenz){
+        if(dataArray.length > 0 && (dataArray[0].überschrift || dataArray[0].kompetenz)){
             return(
+                dataArray.length > 0 && (
                 <div>
                     <h4 style={{borderBottom: `2px solid ${activefarbecode}`}} className={`${styles.partTitle}`}>{key}</h4>
                     <div>
-                        {dataArray.map((item, index) =>
+                        {dataArray?.map((item, index) =>
                             <div key={index} className={`${styles.partTitlesRows}`}>
                                 <span className={item.überschrift && 'fw-bolder'}>{item.überschrift || item.title}</span>
                                 {item.überschrift ? (
@@ -74,12 +77,14 @@ const London = () => {
                         )}
                     </div>
                 </div>
+                )
             )
         } else{
             return (
+                dataArray.length > 0 && (
                 <div>
                     <h4 style={{borderBottom: `2px solid ${activefarbecode}`}} className={`${styles.partTitle}`}>{key}</h4>
-                    {dataArray.map((item, index) => (
+                    {dataArray?.map((item, index) => (
                         <div key={index}>
                             {item.link ? (
                                 <div className='d-flex flex-column mt-2'>
@@ -93,9 +98,9 @@ const London = () => {
                                 </div>
                             )}
                         </div>
-
                     ))}
                 </div>
+                )
             )
         }
     }
@@ -104,7 +109,7 @@ const London = () => {
     return (
         <div className={`container-fluid d-flex flex-column justify-content-evenly align-items-center ps-lg-0 ${styles.londonVorlageCon}`}>
             <div style={{height: '90vh'}} className='d-flex align-items-center'>
-                <div className={`row ${styles.rowDivTag}`} ref={cvCon}>
+                <div className={`row ${styles.rowDivTag} overflow-hidden`} ref={cvCon}>
                     <div style={{backgroundColor: activefarbecode}} className={`col-4 ${styles.leftSide}`}>
                         <div className={`mt-4`}>
                             <img ref={imgTagRef} className={styles.bild} />
@@ -119,20 +124,20 @@ const London = () => {
                             <div className={`${styles.kontaktBox}`}>{cvadresse}</div>
                         </div>
                         <div>
-                            {kompetenzInteresseStärkeHandler('Sprachen', sprachen)}
-                            {kompetenzInteresseStärkeHandler('Kompetenzen', kompetenzen)}
-                            {kompetenzInteresseStärkeHandler('Interessen', interessen)}
-                            {kompetenzInteresseStärkeHandler('Stärken', stärken)}
+                            {kompetenzInteresseStärkeHandler(accordionüberschrift5, sprachen)}
+                            {kompetenzInteresseStärkeHandler(accordionüberschrift4, kompetenzen)}
+                            {kompetenzInteresseStärkeHandler(accordionüberschrift6, interessen)}
+                            {kompetenzInteresseStärkeHandler(accordionüberschrift7, stärken)}
                         </div>
                     </div>
                     <div className={`col-8 ${styles.rightSide}`}>
                         <div>
-                        <h4 style={{borderBottom: `2px solid ${activefarbecode}`}} className={`${styles.partTitle}`}>ÜBER MICH</h4>
+                        <h4 style={{borderBottom: `2px solid ${activefarbecode}`}} className={`${styles.partTitle}`}>Über Mich</h4>
                             <p>{übermich}</p>
                         </div>
-                        {erfahrungBildungProjektHandler('BERUFSERFAHRUNGEN', berufserfahrungen)}
-                        {erfahrungBildungProjektHandler('BILDUNG', bildung)}
-                        {erfahrungBildungProjektHandler('PROJEKTE', projekte)}
+                        {erfahrungBildungProjektHandler(accordionüberschrift1, berufserfahrungen)}
+                        {erfahrungBildungProjektHandler(accordionüberschrift2, bildung)}
+                        {erfahrungBildungProjektHandler(accordionüberschrift3, projekte)}
                     </div>
                 </div>
             </div>

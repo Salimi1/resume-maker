@@ -5,11 +5,14 @@ import styles from './Berlin.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 
 const BerlinAnschreiben = () => {
-    
+    const state = useSelector(state => state.allVorlagenState)
+    const {name, nummer, anschradresse, email, position, activefarbecode, anschreibentext, anschreibenüberschrift, unternehmensdaten, monaten} = state;
+    const date = new Date()
+    const day = date.getDate()
+    const monthe = monaten[date.getMonth()]
+    // console.log(date.getMonth);
     const cvCon = useRef()
     const dispatch = useDispatch()
-    const state = useSelector(state => state.allVorlagenState)
-    const {name, nummer, anschradresse, email, position, activefarbecode, anschreibentext, anschreibenüberschrift, unternehmensdaten} = state;
     return (
         <div className={`container-fluid d-flex flex-column justify-content-evenly align-items-center ${styles.berlinVorlageCon}`}>
             <div style={{height: '90vh'}} className='d-flex align-items-center'>
@@ -36,7 +39,7 @@ const BerlinAnschreiben = () => {
                     </div>
                     <div className={`${styles.anschreibenUntereSeite} mt-2`}>
                         <div className='text-end py-3'>
-                            <span className=''>Darmstadt, den 05. Dazember 2024</span>
+                            <span className=''>Darmstadt, den {day}. {monthe} 2024</span>
                         </div>
                         <span className={`${styles.anschreibenTitle}`}>{anschreibenüberschrift}</span>
                         <pre className={`mt-3 ${styles.anschreibenText} ${styles.preTag}`}>{anschreibentext}</pre>

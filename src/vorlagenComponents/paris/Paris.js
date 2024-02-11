@@ -47,12 +47,14 @@ const Paris = () => {
 
     const sprachenInteressenStärkenHandler = (key, dataArray, spanContent) => {
         return (
+          dataArray.length > 0 && (
             <div className='my-3'>
                 <h4 className={`${styles.rechteSeitePartTitle} text-center`}>{key.toUpperCase() + 'N'}</h4>
                 <div>
                     <span>{dataArray.map((item, index) => (item[spanContent] + ', '))}</span>
                 </div>
             </div>
+          )
         )
     }
 
@@ -110,16 +112,16 @@ const Paris = () => {
         );
       
         if (dataArray[0].überschrift || dataArray[0].kompetenz) {
-          return renderErfahrungOderKompetenz();
+          return dataArray.length > 0 && renderErfahrungOderKompetenz();
         } else {
-          return renderBildungOderProjekt();
+          return dataArray.length > 0 && renderBildungOderProjekt();
         }
-      };
+    };
 
       return (
           <div className={`container-fluid d-flex flex-column justify-content-evenly align-items-center ${styles.parisVorlageCon}`}>
               <div style={{height: '90vh'}} className='d-flex align-items-center'>
-                <div ref={cvCon} className={`row ${styles.rowDivTag}`}>
+                <div ref={cvCon} className={`row ${styles.rowDivTag} overflow-hidden`}>
                     <div className={`col-8 ${styles.leftSide}`}>
                         <div>
                             <h5 className={`${styles.name}`}>{name}</h5>

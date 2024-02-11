@@ -27,6 +27,7 @@ Farzad Salimi`,
     accordionüberschrift5: 'Sprachen',
     accordionüberschrift6: 'Interessen',
     accordionüberschrift7: 'Stärken',
+    accordionüberschrift8: 'Über Mich',
     sprachen: [
         {sprache: 'Persisch'},
         {sprache: 'Paschtu'},
@@ -70,14 +71,13 @@ Farzad Salimi`,
         {kompetenz: 'Bootstrap & Rejex', niveau: 1},
         {kompetenz: 'Git & Redux', niveau: 1},
     ],
+    monaten: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'Novermber', 'Dezember']
 }
 
 
 const allVorlagenReducer = (state = initialState, action) => {
     const { payload } = action;
     const propertyToChange = action.actionName?.toLowerCase();
-    console.log(propertyToChange);
-
     switch (action.type) {
         case 'DOWNLOAD':
             const { cvCon } = action;

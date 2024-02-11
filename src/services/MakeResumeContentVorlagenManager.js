@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
 //redux
@@ -23,13 +23,18 @@ const MakeResumeContentForm = ({ data }) => {
     const [accordionÜberschrift5State, setAccordionüberschrift5State] = useState('')
     const [accordionÜberschrift6State, setAccordionüberschrift6State] = useState('')
     const [accordionÜberschrift7State, setAccordionüberschrift7State] = useState('')
+    const [accordionÜberschrift8State, setAccordionüberschrift8State] = useState('')
+
 
     const dispatch = useDispatch();
     const state = useSelector(state => state.allVorlagenState);
-    const {name, position, email, bild, übermich, nummer, cvadresse, anschradresse, unternehmensdaten, anschreibentext, anschreibenüberschrift, accordionüberschrift1, accordionüberschrift2, accordionüberschrift3, accordionüberschrift4, accordionüberschrift5, accordionüberschrift6, accordionüberschrift7,  berufserfahrungen, bildung, projekte, kompetenzen, sprachen, interessen, stärken } = state;
+    const {name, position, email, bild, übermich, nummer, cvadresse, anschradresse, unternehmensdaten, anschreibentext, anschreibenüberschrift, accordionüberschrift1, accordionüberschrift2, accordionüberschrift3, accordionüberschrift4, accordionüberschrift5, accordionüberschrift6, accordionüberschrift7, accordionüberschrift8,  berufserfahrungen, bildung, projekte, kompetenzen, sprachen, interessen, stärken } = state;
 
     const changeÜberschrift = (e, key) => {
-        if(key === 'Berufserfahrungen'){
+        if(key === 'Über Mich'){
+            setAccordionüberschrift8State(e.target.value)
+        }
+        else if(key === 'Berufserfahrungen'){
             setAccordionÜberschrift1State(e.target.value)
         }
         else if(key === 'Bildung'){
@@ -53,7 +58,10 @@ const MakeResumeContentForm = ({ data }) => {
     }
 
     const returnValueHandler = (key) => {
-        if(key === 'Berufserfahrungen'){
+        if(key === 'Über Mich'){
+            return accordionÜberschrift8State
+        }
+        else if(key === 'Berufserfahrungen'){
             return accordionÜberschrift1State
         }
         else if(key === 'Bildung'){
@@ -82,12 +90,12 @@ const MakeResumeContentForm = ({ data }) => {
     };
 
     const onChangeHandler = (key, index, property, value) => {
-        dispatch({ type: `EDIT_${key.toUpperCase()}`, payload: { index, property, newValue: value }, actionName: key.toUpperCase() });
+        dispatch({ type: `EDIT_${key?.toUpperCase()}`, payload: { index, property, newValue: value }, actionName: key?.toUpperCase() });
     };
 
-    const formLabelAndInputDivTagHandler = ({inputHeight, className, textareaClassName, inputType, labelValue, functionName, key, index, newItemFirstPropertyKey, inputValue}) => {
-        const upperCasedAndReplacedSpacesLabelValue = labelValue.replace(/\s+/g, '').toUpperCase();
-        const lowerCasedAndReplacedSpacesLabelValue = labelValue.replace(/\s+/g, '').toLowerCase();
+    const formLabelAndInputDivTagHandler = ({inputHeight, className, textareaClassName, inputType, labelValue, arrayOrVariabelName, functionName, key, index, newItemFirstPropertyKey, inputValue}) => {
+        const upperCasedAndReplacedSpacesLabelValue = arrayOrVariabelName ? arrayOrVariabelName.replace(/\s+/g, '').toUpperCase() : labelValue.replace(/\s+/g, '').toUpperCase();
+        const lowerCasedAndReplacedSpacesLabelValue = labelValue.replace(/\s+/g, '')?.toLowerCase();
         const newLabelValue = labelValue === 'CvAdresse' || labelValue === 'AnschrAdresse' ? 'Adresse' : labelValue
         const handleChange = (e) => {
             if (functionName === 'MakeResumeContentForm') {
@@ -100,7 +108,7 @@ const MakeResumeContentForm = ({ data }) => {
                     dispatch({ type: actionType, payload, actionName });
                 }
             } else if (functionName === 'returnDataHandler') {
-                onChangeHandler(key, index, newItemFirstPropertyKey, e.target.value);
+                onChangeHandler(arrayOrVariabelName, index, newItemFirstPropertyKey, e.target.value);
             }
         };
 
@@ -122,18 +130,17 @@ const MakeResumeContentForm = ({ data }) => {
         );
     };
 
-
-    const returnAccordionHandler = (key, dispatchName, dataArray, newItemFirstPropertyKey, newItemSecondPropertyKey) => {
-        const dispatchChangeÜberschrift = (newValue, dispatchName) => {
-            dispatch({type: `CHANGE_${dispatchName}`, payload: newValue, actionName: dispatchName})
-        }
-        const actionName = key.toUpperCase();
+    const dispatchChangeÜberschrift = (newValue, dispatchName) => {
+        dispatch({type: `CHANGE_${dispatchName}`, payload: newValue, actionName: dispatchName})
+    }
+    const returnAccordionOrTextAreaHandler = (key, arrayName, dispatchName, dataArray, newItemFirstPropertyKey, newItemSecondPropertyKey, isÜberMich) => {
+        const actionName = arrayName?.toUpperCase();
         const payload = {
             [newItemFirstPropertyKey]: key + ` ${dataArray.length + 1}`,
             [newItemSecondPropertyKey]: '',
         };
 
-        if (key === 'Berufserfahrungen') {
+        if (arrayName === 'Berufserfahrungen') {
             payload.datum = '';
         }
 
@@ -155,14 +162,14 @@ const MakeResumeContentForm = ({ data }) => {
                                 <input value={returnValueHandler(key)} onChange={(e) => changeÜberschrift(e, key)} type="text" className="form-control" />
                             </div>
                             <div className="modal-footer">
-                                <button onClick={e => dispatchChangeÜberschrift(returnValueHandler(key), dispatchName)} data-bs-dismiss='modal' type="button" className="btn btn-primary">Ändern</button>
+                                <button onClick={e => dispatchChangeÜberschrift(returnValueHandler(arrayName), dispatchName)} data-bs-dismiss='modal' type="button" className="btn btn-primary">Ändern</button>
                                 <button data-bs-dismiss='modal' type="button" className="btn btn-danger">Abbrechen</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div>
-                    {dataArray.map((item, index) => (
+                    {dataArray.length > 0 && dataArray.map((item, index) => (
                         <div className="accordion-item" key={index}>
                             <div className="accordion-header d-flex align-items-center">
                                 <button style={{ width: '92%' }} type="button" data-bs-toggle='collapse' data-bs-target={`#collapse${key}${index}`} className="accordion-button bg-transparent">
@@ -172,20 +179,20 @@ const MakeResumeContentForm = ({ data }) => {
                             </div>
                             <div id={`collapse${key}${index}`} className="accordion-collapse collapse" key={`collapse${key}${index}`}>
                                 <div className="accordion-body">
-                                    {key === 'Berufserfahrungen' ? (
+                                    {arrayName === 'Berufserfahrungen' ? (
                                     <form key={index}>
-                                        {formLabelAndInputDivTagHandler ({inputHeight: '' ,className: '', inputType: 'text', labelValue: newItemFirstPropertyKey, functionName: 'returnDataHandler', key, index, newItemFirstPropertyKey, inputValue: item.überschrift})}
+                                        {formLabelAndInputDivTagHandler ({inputHeight: '' ,className: '', inputType: 'text', labelValue: newItemFirstPropertyKey, arrayOrVariabelName: arrayName, functionName: 'returnDataHandler', key, index, newItemFirstPropertyKey, inputValue: item.überschrift})}
                                         <div className="row mt-3">
-                                            {formLabelAndInputDivTagHandler ({className: 'col-6', inputType: 'text', labelValue: newItemSecondPropertyKey, functionName: 'returnDataHandler', key, index, newItemFirstPropertyKey: newItemSecondPropertyKey, inputValue: item.arbeitgeber})}
-                                            {formLabelAndInputDivTagHandler ({className: 'col-6', inputType: 'text', labelValue: 'datum', functionName: 'returnDataHandler', key, index, newItemFirstPropertyKey: 'datum', inputValue: item.datum})}
+                                            {formLabelAndInputDivTagHandler ({className: 'col-6', inputType: 'text', labelValue: newItemSecondPropertyKey, arrayOrVariabelName: arrayName, functionName: 'returnDataHandler', key, index, newItemFirstPropertyKey: 'arbeitgeber', inputValue: item.arbeitgeber})}
+                                            {formLabelAndInputDivTagHandler ({className: 'col-6', inputType: 'text', labelValue: 'datum', arrayOrVariabelName: arrayName, functionName: 'returnDataHandler', key, index, newItemFirstPropertyKey: 'datum', inputValue: item.datum})}
                                         </div>
                                     </form>
                                     ) : (
                                     <form key={index} className="row">
-                                        {((key === 'Kompetenzen' && vorlageName === 'paris') || key === 'Bildung' || key === 'Projekte') ? (
+                                        {((arrayName === 'Kompetenzen' && vorlageName === 'paris') || arrayName === 'Bildung' || arrayName === 'Projekte') ? (
                                             <div className="row" key={`form-inner-${key}-${index}`}>
-                                                {formLabelAndInputDivTagHandler ({className: 'col-6', inputType: 'text', labelValue: newItemFirstPropertyKey, functionName: 'returnDataHandler', key, index, newItemFirstPropertyKey, inputValue: item[newItemFirstPropertyKey]})}
-                                                {key === 'Kompetenzen' ? (
+                                                {formLabelAndInputDivTagHandler ({className: 'col-6', inputType: 'text', labelValue: newItemFirstPropertyKey, arrayOrVariabelName: arrayName, functionName: 'returnDataHandler', key, index, newItemFirstPropertyKey, inputValue: item[newItemFirstPropertyKey]})}
+                                                {arrayName === 'Kompetenzen' ? (
                                                     <div className="col-6" key={`col2-inner-${key}-${index}`}>
                                                         <label className="form-label">{newItemSecondPropertyKey}</label>
                                                         <select onChange={(e) => onChangeHandler(key, index, 'niveau', e.target.value)} className="form-select" key={`select-inner-${key}-${index}`}>
@@ -196,11 +203,11 @@ const MakeResumeContentForm = ({ data }) => {
                                                         </select>
                                                     </div>
                                                 ) : (
-                                                    formLabelAndInputDivTagHandler ({className: 'col-6', inputType: 'text', labelValue: newItemSecondPropertyKey, functionName: 'returnDataHandler', key, index, newItemFirstPropertyKey: newItemSecondPropertyKey, inputValue: item[newItemSecondPropertyKey]})
+                                                    formLabelAndInputDivTagHandler ({className: 'col-6', inputType: 'text', labelValue: newItemSecondPropertyKey, arrayOrVariabelName: arrayName, functionName: 'returnDataHandler', key, index, newItemFirstPropertyKey: newItemSecondPropertyKey, inputValue: item[newItemSecondPropertyKey]})
                                                     )}
                                             </div>
                                         ) : (
-                                            formLabelAndInputDivTagHandler ({className: '', inputType: 'text', labelValue: newItemFirstPropertyKey, functionName: 'returnDataHandler', key, index, newItemFirstPropertyKey, inputValue: item[newItemFirstPropertyKey]})
+                                            formLabelAndInputDivTagHandler ({className: '', inputType: 'text', labelValue: newItemFirstPropertyKey, arrayOrVariabelName: arrayName, functionName: 'returnDataHandler', key, index, newItemFirstPropertyKey, inputValue: item[newItemFirstPropertyKey]})
                                             )}
                                     </form>
                                     )}
@@ -209,9 +216,9 @@ const MakeResumeContentForm = ({ data }) => {
                         </div>
                     ))}
                     <div
-                        onClick={() => dispatch({ type: `ADD_${key.toUpperCase()}`, payload, actionName })}
+                        onClick={() => dispatch({ type: `ADD_${arrayName?.toUpperCase()}`, payload, actionName })}
                         type="button"
-                        className={`d-flex align-items-center fw-medium text-primary mt-3 ${key === 'Stärken' && 'pb-3'}`}
+                        className={`d-flex align-items-center fw-medium text-primary mt-3 ${arrayName === 'Stärken' && 'pb-3'}`}
                         key={`add-button-${key}`}
                     >
                         <AiOutlinePlus />
@@ -242,9 +249,10 @@ const MakeResumeContentForm = ({ data }) => {
                 <div className="row mt-3 mt-xl-2">
                     {formLabelAndInputDivTagHandler ({inputHeight: vorlageType === 'cv' ? '7vh' : '11vh', className: '', inputType: 'email', labelValue: vorlageType === 'cv' ? 'Email' : 'Anschreiben Überschrift', functionName: 'MakeResumeContentForm', inputValue: vorlageType === 'cv' ? email : anschreibenüberschrift})}
                 </div>
-                {vorlageName === 'london' && vorlageType === 'cv' &&
+                {(vorlageName === 'london' || vorlageName === 'berlin') && vorlageType === 'cv' &&
                     <div className="row mt-3 mt-xl-2">
-                        {formLabelAndInputDivTagHandler ({inputHeight: '20vh', className: 'col-12', inputType: 'text', labelValue: 'Über Mich', functionName: 'MakeResumeContentForm', inputValue: übermich})}
+                        {formLabelAndInputDivTagHandler ({inputHeight: '20vh', className: 'col-12', inputType: 'text', labelValue: accordionüberschrift8, functionName: 'MakeResumeContentForm', inputValue: übermich})}
+                        {/* {returnModalHandler('überMich', dispatchChangeÜberschrift, accordionüberschrift8)} */}
                     </div>
                 }
                 <div className="row mt-3 mt-xl-2">
@@ -253,13 +261,13 @@ const MakeResumeContentForm = ({ data }) => {
                 {
                     vorlageType === 'cv' && (
                         <div className="row mt-3 mt-xl-0">
-                            {returnAccordionHandler(accordionüberschrift1, 'ACCORDIONÜBERSCHRIFT1', berufserfahrungen, 'überschrift', 'arbeitgeber')}
-                            {returnAccordionHandler(accordionüberschrift2, 'ACCORDIONÜBERSCHRIFT2', bildung, 'schule', 'datum')}
-                            {returnAccordionHandler(accordionüberschrift3, 'ACCORDIONÜBERSCHRIFT3', projekte, 'title', 'link')}
-                            {returnAccordionHandler(accordionüberschrift4, 'ACCORDIONÜBERSCHRIFT4', kompetenzen, 'kompetenz', 'niveau')}
-                            {returnAccordionHandler(accordionüberschrift5, 'ACCORDIONÜBERSCHRIFT5', sprachen, 'sprache')}
-                            {returnAccordionHandler(accordionüberschrift6, 'ACCORDIONÜBERSCHRIFT6', interessen, 'interesse')}
-                            {returnAccordionHandler(accordionüberschrift7, 'ACCORDIONÜBERSCHRIFT7', stärken, 'stärke')}
+                            {returnAccordionOrTextAreaHandler(accordionüberschrift1, 'Berufserfahrungen', 'ACCORDIONÜBERSCHRIFT1', berufserfahrungen, 'überschrift', 'arbeitgeber', false)}
+                            {returnAccordionOrTextAreaHandler(accordionüberschrift2, 'Bildung', 'ACCORDIONÜBERSCHRIFT2', bildung, 'schule', 'datum', false)}
+                            {returnAccordionOrTextAreaHandler(accordionüberschrift3, 'Projekte', 'ACCORDIONÜBERSCHRIFT3', projekte, 'title', 'link', false)}
+                            {returnAccordionOrTextAreaHandler(accordionüberschrift4, 'Kompetenzen', 'ACCORDIONÜBERSCHRIFT4', kompetenzen, 'kompetenz', 'niveau', false)}
+                            {returnAccordionOrTextAreaHandler(accordionüberschrift5, 'Sprachen', 'ACCORDIONÜBERSCHRIFT5', sprachen, 'sprache', false)}
+                            {returnAccordionOrTextAreaHandler(accordionüberschrift6, 'Interessen', 'ACCORDIONÜBERSCHRIFT6', interessen, 'interesse', false)}
+                            {returnAccordionOrTextAreaHandler(accordionüberschrift7, 'Stärken', 'ACCORDIONÜBERSCHRIFT7', stärken, 'stärke', false)}
                         </div>
                     )
                 }
